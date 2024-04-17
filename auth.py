@@ -59,7 +59,7 @@ class Login(Resource):
         for user in users_credentials:
             stored_user_token = user.token.split(":")[0] + ":" + user.token.split(":")[1]
             if token == stored_user_token and float(user.token.split(":")[2]) > time.time() and username == user.username:
-                return {"message": "Valid token"}, 200
+                return {"token": stored_user_token}, 200
         return {"message": "Invalid token"}, 401
     
 if __name__ == '__main__':
