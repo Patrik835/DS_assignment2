@@ -1,1 +1,2 @@
-
+### /auth.py
+This file includes authentication part of the application, POST method for verfiying user credentials and generating token (random string:user role:expiration time) and GET method for verifying that the token is not expired and is still valid.
