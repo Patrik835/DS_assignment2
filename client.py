@@ -1,5 +1,8 @@
 from requests import put, get, post
 
 headers = {'Content-Type': 'application/json'}
-print(post('http://localhost:5000/login', json={'username': 'randomname', 'password':'randompassword'}, headers=headers).text)
-# print(get('http://localhost:5000/pets/dog').json())
+response = post('http://localhost:5000/login', json={'username': 'admin', 'password':'admin'}, headers=headers)
+print(response.status_code, response.json())
+
+repsonse = get('http://localhost:5000/login', json={'token':response.json()['token']}, headers=headers)
+print(repsonse.status_code, repsonse.json())
