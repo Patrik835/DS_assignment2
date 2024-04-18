@@ -1,13 +1,10 @@
 from flask import Flask, request
 from flask_restx import Resource, Api, fields
 from requests import get
-from models import Jobs, Results
-from flask_sqlalchemy import SQLAlchemy
+from master_service.app import Jobs, Results
+from app import app, db
 
-app = Flask(__name__)
 api = Api(app)
-
-db = SQLAlchemy(app)
 
 def verify_login(user, token):
     repsonse = get('http://localhost:5000/login', json={'token':token,'username':user}, headers = {'Content-Type': 'application/json'})
@@ -58,6 +55,3 @@ class Jobs(Resource):
             return {"message": jobs}, 200
 
         return {"message": "Invalid credentials or permissions"}, 401
-
-if __name__ == '__main__':
-    app.run(debug=True,port=4000)
