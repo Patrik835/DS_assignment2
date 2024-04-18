@@ -1,10 +1,32 @@
 from flask import Flask, request
 from flask_restx import Resource, Api, fields
 from requests import get
-from master_service.app import Jobs, Results
-from app import app, db
+from datetime import datetime
+from sqlalchemy import Enum
 
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///storage.db'
+db = SQLAlchemy(app)
 api = Api(app)
+
+class Jobs(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50))
+    submitted_at = db.Column(db.DateTime, default=datetime.utcnow)
+    status = db.Column(Enum('submitted', 'processing', 'done', name='status_enum'), default='submitted')
+    date_range = db.Column(db.String(50))
+    assets = db.Column(db.String)   #array
+
+class Results(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    job_id = db.Column(db.Integer, db.ForeignKey('jobs.id'))
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    assets_weights = db.Column(db.String) #array
+    
+    job = db.relationship('Jobs', backref='results')    
 
 def verify_login(user, token):
     repsonse = get('http://localhost:5000/login', json={'token':token,'username':user}, headers = {'Content-Type': 'application/json'})
@@ -26,7 +48,7 @@ jobs_get_model = api.model('Login', {
 })
 
 @api.route('/jobs')
-class Jobs(Resource):
+class Job(Resource):
     
     @api.expect(jobs_post_model)
     def post(self):
@@ -55,3 +77,6 @@ class Jobs(Resource):
             return {"message": jobs}, 200
 
         return {"message": "Invalid credentials or permissions"}, 401
+
+if __name__ == '__main__':
+    app.run(debug=True,port=8080)
