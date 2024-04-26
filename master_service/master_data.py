@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_restx import Resource, Api, fields
 from requests import get
 from datetime import datetime
-from sqlalchemy import Enum
+from sqlalchemy import Enum, desc
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -43,6 +43,14 @@ jobs_post_model = api.model('Login', {
 jobs_get_model = api.model('Login', {
     'username': fields.String(required=True, description='Username of user'),
     'token': fields.String(required=True, description='Users token'),
+    'job_id': fields.String(required=True, description='Job id'),
+})
+
+jobs_put_model = api.model('Login', {
+    'username': fields.String(required=True, description='Username of user'),
+    'token': fields.String(required=True, description='Users token'),
+    'job_id': fields.String(required=True, description='Job id'),
+    'assets_weights': fields.String(required=True, description='Assets weights'),
 })
 
 @api.route('/jobs')
@@ -60,7 +68,11 @@ class Job(Resource):
             job = Jobs(username=username, date_range=date_range, assets=assets)
             db.session.add(job)
             db.session.commit()
-            return {"message": "Job submitted"}, 200
+            
+            #get job id
+            job_id = db.session.query(Jobs).filter(Jobs.username == username).order_by(desc(Jobs.submitted_at)).first().id
+            
+            return {"message": "Job submitted", "job_id":f"{job_id}"}, 200
         
         return {"message": "Invalid credentials or permissions"}, 401
     
@@ -69,10 +81,38 @@ class Job(Resource):
         args = request.json
         username = args['username']
         token = args['token']
+        job_id = args['job_id']
         
         if verify_login(username,token):
-            jobs = db.session.query(Jobs).filter(Jobs.status.in_(['submitted','processing', 'done'])).all() 
-            return {"message": jobs}, 200
+            #get job results
+            result = db.session.query(Results).filter(Results.job_id == job_id).first()
+            
+            return {"message": "Job results", "job_id":f"{job_id}", "timestamp":f"{result.timestamp}", "assets_weights":f"{result.assets_weights}"}, 200
+
+        return {"message": "Invalid credentials or permissions"}, 401
+    
+    @api.expect(jobs_put_model)
+    def put(self):
+        args = request.json
+        username = args['username']
+        token = args['token']
+        job_id = args['job_id']
+        assets_weights = args['assets_weights']
+        
+        if verify_login(username,token):
+            #update job status
+            job = db.session.query(Jobs).filter(Jobs.id == job_id).first()
+            #update job status to done
+            job.status = 'done'
+            db.session.commit()
+            
+            #add results
+            result = Results(job_id=job_id, assets_weights=assets_weights)
+            db.session.add(result)
+            db.session.commit()
+            
+            return {f"message": f"Job {job_id} updated",'job_id':job_id}, 200    
+        
 
         return {"message": "Invalid credentials or permissions"}, 401
 
