@@ -3,8 +3,6 @@ from flask_restx import Resource, Api, fields
 from requests import get
 from datetime import datetime
 from sqlalchemy import Enum
-
-from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -73,7 +71,7 @@ class Job(Resource):
         token = args['token']
         
         if verify_login(username,token):
-            jobs = db.session.query(Jobs).filter(Jobs.status.in_(['processing', 'done'])).all() 
+            jobs = db.session.query(Jobs).filter(Jobs.status.in_(['submitted','processing', 'done'])).all() 
             return {"message": jobs}, 200
 
         return {"message": "Invalid credentials or permissions"}, 401
