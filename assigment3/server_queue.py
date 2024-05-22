@@ -34,22 +34,28 @@ class Login(Resource):
         #user role verification ADMIN and MANAGER
         pass
     
-@api.route("/queue")
+@api.route("/create_queue")
 class Login(Resource):
     def get(self):
+        global all_queues
+        print(all_queues)
         return_message = {}
         for index, q in enumerate(all_queues):
             print(q)
-            return_message[f"Queue{index}"] = (q.queue, list(q.queue))
-        return json.dumps(return_message)
-            
+            return_message[f"Queue{index}"] = (q.queue, list(q.queue))            
 
     def post(self): #creating queue
+        global all_queues
         if True: #user role verification ADMIN
-            with open("/config.json") as f:
-                max_queue_size = json.load(f)["max_messages"]
-            main_queue = Queue.queue(maxsize=max_queue_size)
-            all_queues.append(main_queue)
+            try:
+                with open("assigment3/config.json", "r") as f:
+                    max_queue_size = json.load(f)["max_messages"]
+                main_queue = Queue(maxsize=max_queue_size)
+                all_queues.append(main_queue)
+                return "Queue created"
+            except:
+                return "Error creating queue"
+            
 
     @api.expect()
     def delete(self):
