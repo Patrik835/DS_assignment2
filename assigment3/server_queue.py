@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_restx import Resource, Api, fields
-from queue import Queue
 import json
+from queue import Queue
 
 app = Flask(__name__)
 api = Api(app)
@@ -38,7 +38,7 @@ class Login(Resource):
 class Login(Resource):
     def get(self):
         return_message = {}
-        for index,q in enumerate(all_queues):
+        for index, q in enumerate(all_queues):
             print(q)
             return_message[f"Queue{index}"] = (q.queue, list(q.queue))
         return json.dumps(return_message)
@@ -46,8 +46,9 @@ class Login(Resource):
 
     def post(self): #creating queue
         if True: #user role verification ADMIN
-            max_queue_size = json.loads(request.data)['max_messages']
-            main_queue = Queue(maxsize=max_queue_size) 
+            with open("/config.json") as f:
+                max_queue_size = json.load(f)["max_messages"]
+            main_queue = Queue.queue(maxsize=max_queue_size)
             all_queues.append(main_queue)
 
     @api.expect()
