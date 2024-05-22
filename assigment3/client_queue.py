@@ -7,6 +7,10 @@ headers = {'Content-Type': 'application/json'}
 response = post('http://localhost:7500/create_queue', json={}, headers=headers)
 print(response.text)
 
+
+response = post('http://localhost:7500/push', json={"assets":"asset1"}, headers=headers)
+print(response.text)
+
 #printing all queues
 response = get('http://localhost:7500/create_queue', json={}, headers=headers)
 print(response.text)

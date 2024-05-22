@@ -17,15 +17,20 @@ token_model = api.model('Token', {
 })
 
 all_queues = []
+post_to_queue_model = api.model('Post', {
+    'assets': fields.String(required=True, description='Assets'),
+ })
+
 
 @api.route("/push")
-class Login(Resource):
-    @api.expect()
-    def post(self):
-        #push
-        #user role verification ADMIN and MANAGER
-        pass
-    
+class Post(Resource):
+    @api.expect(post_to_queue_model)
+    def post(self): #push
+        if True: #user role verification ADMIN and MANAGER
+            args = request.json
+            all_queues[0].put(args["assets"]) #change later to specific queue
+            return "Asset pushed to queue"
+
 @api.route("/pull")
 class Login(Resource):
     @api.expect()
