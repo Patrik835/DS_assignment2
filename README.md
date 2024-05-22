@@ -1,4 +1,8 @@
 ## Distributed Systems Assignment 2 - RESTful API by Samuel Kollár and Patrik Palenčár
+
+We used Flask python framework for this project, because python is the most natural language for both of us and we already had some experience with flask framework before. We have created two services: auth_service and master_data_service. The auth_service is responsible for user authentication and token generation, while the master_data_service is responsible for managing the jobs and results in the database. The services are running on different ports and are communicating with each other using HTTP requests. 
+We use sqlalchemy for database management and sqlite database.
+
 ### auth_service/auth.py
 This file includes authentication part of the application, POST method for verfiying user credentials and generating token (random string:user role:expiration time) and GET method for verifying that the token is not expired and is still valid.
 
