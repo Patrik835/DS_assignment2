@@ -1,0 +1,95 @@
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 404
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 404
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 404
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 500
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 500
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 500
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 500
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 500
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent POST request to http://localhost:7500/push, received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200
+INFO:root:Sent PUT request to http://localhost:7500/pull , received status code: 200
+INFO:root:Sent DELETE request to http://localhost:7500/create_queue , received status code: 200
+INFO:root:Sent GET request to http://localhost:7500/create_queue, received status code: 200

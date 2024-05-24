@@ -20,38 +20,52 @@ all_queues = []
 post_to_queue_model = api.model('Post', {
     'assets': fields.String(required=True, description='Assets'),
  })
+set_index_model = api.model('Deqeue', {
+    'assets': fields.Integer(required=True, index_nr = 0),
+ })
 
 
 @api.route("/push")
 class Post(Resource):
     @api.expect(post_to_queue_model)
-    def post(self): #push
-        if True: #user role verification ADMIN and MANAGER
+    def post(self): #push DONE done just add verification ADMIN and MANAGER
+        if True: 
             args = request.json
             all_queues[0].put(args["assets"]) #change later to specific queue
             return "Asset pushed to queue"
+        else:
+            return "No acces rights"
 
 @api.route("/pull")
-class Login(Resource):
-    @api.expect()
-    def put(self):
-        #pull
-        #user role verification ADMIN and MANAGER
-        pass
+class Dequeue(Resource):
+    @api.expect(set_index_model)
+    def put(self):   #pull DONE just add verification ADMIN and MANAGER
+        if True:     
+            try:
+                args = request.json
+                all_queues[args["index_nr"]].get()
+                for index, q in enumerate(all_queues):
+                    if index == args["index_nr"]:
+                        return list(q.queue)     #returning queue contents to the caller
+            except Exception as e:
+                return f"Error pulling asset from queue {str(e)}"
+        else:
+            return "No acces rights"
     
 @api.route("/create_queue")
-class Login(Resource):
+class Create_delete(Resource):      #DONE
     def get(self):
         global all_queues
         print(all_queues)
         return_message = {}
         for index, q in enumerate(all_queues):
             print(q)
-            return_message[f"Queue{index}"] = (q.queue, list(q.queue))            
+            return_message[f"Queue{index}"] = list(q.queue)         
+        return return_message   
 
-    def post(self): #creating queue
+    def post(self): #creating queue DONE just add verification ADMIN
         global all_queues
-        if True: #user role verification ADMIN
+        if True: 
             try:
                 with open("assigment3/config.json", "r") as f:
                     max_queue_size = json.load(f)["max_messages"]
@@ -60,13 +74,18 @@ class Login(Resource):
                 return "Queue created"
             except:
                 return "Error creating queue"
+        else:
+            return "No acces rights"
             
 
-    @api.expect()
-    def delete(self):
-        #deleting 
-        #user role verification ADMIN
-        pass
+    @api.expect(set_index_model)
+    def delete(self):  #deleting  DONE queue add verification ADMIN
+        if True:
+            args = request.json
+            all_queues.pop(args["index_nr"])
+            return "Queue deleted"
+        else:
+            return "No acces rights"
     
 if __name__ == '__main__':
     app.run(debug=True,port=7500)
