@@ -1,8 +1,7 @@
 import logging
 from requests import put, get, post, delete
 
-logging.basicConfig(filename='client.log', level=logging.INFO)
-
+logging.basicConfig(filename='assigment3/client.log', level=logging.INFO)
 
 headers = {'Content-Type': 'application/json'}
 

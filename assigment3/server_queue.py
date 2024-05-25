@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_restx import Resource, Api, fields
 import json
 from queue import Queue
+from requests import put, get, post, delete
 
 app = Flask(__name__)
 api = Api(app)
@@ -25,11 +26,20 @@ set_index_model = api.model('Deqeue', {
  })
 
 
+@api.route("/authenticate")
+class Auth(Resource):
+    @api.expect()
+    def post(self):
+        return True #mocks the authentication to always reutn True as if all users where admins
+
 @api.route("/push")
 class Post(Resource):
     @api.expect(post_to_queue_model)
     def post(self): #push DONE done just add verification ADMIN and MANAGER
-        if True: 
+        
+        auth = post('http://127.0.0.1:7500/authenticate', json={}, headers={'Content-Type': 'application/json'})
+        print(auth)
+        if auth: 
             args = request.json
             all_queues[0].put(args["assets"]) #change later to specific queue
             return "Asset pushed to queue"
@@ -40,7 +50,10 @@ class Post(Resource):
 class Dequeue(Resource):
     @api.expect(set_index_model)
     def put(self):   #pull DONE just add verification ADMIN and MANAGER
-        if True:     
+        
+        auth = post('http://127.0.0.1:7500/authenticate', json={}, headers={'Content-Type': 'application/json'})
+        print(auth)
+        if auth:    
             try:
                 args = request.json
                 all_queues[args["index_nr"]].get()
@@ -65,7 +78,10 @@ class Create_delete(Resource):      #DONE
 
     def post(self): #creating queue DONE just add verification ADMIN
         global all_queues
-        if True: 
+        
+        auth = post('http://127.0.0.1:7500/authenticate', json={}, headers={'Content-Type': 'application/json'})
+        print(auth)
+        if auth: 
             try:
                 with open("assigment3/config.json", "r") as f:
                     max_queue_size = json.load(f)["max_messages"]
@@ -80,7 +96,10 @@ class Create_delete(Resource):      #DONE
 
     @api.expect(set_index_model)
     def delete(self):  #deleting  DONE queue add verification ADMIN
-        if True:
+        
+        auth = post('http://127.0.0.1:7500/authenticate', json={}, headers={'Content-Type': 'application/json'})
+        print(auth)
+        if auth:
             args = request.json
             all_queues.pop(args["index_nr"])
             return "Queue deleted"
