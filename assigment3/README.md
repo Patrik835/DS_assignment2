@@ -11,3 +11,7 @@ server_queue.py includes the server side of this assignment
 client_queue.py inclides test cases for the server_queue.py file (to run them simply run the file after starting the server)
 config.json includes configs for the assignment ("time_to_persist" - time after which queues are stored in the db, "max_messages" - max number of messages per queue)
 client.log logs every server response
+
+## Persistent Queue Storage
+In server_queue.py a thread is started which saves the queues per specified time in the config.json file to a database
+On startup the queues are loaded from the database
