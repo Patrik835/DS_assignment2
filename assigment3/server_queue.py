@@ -43,7 +43,7 @@ token_model = api.model('Token', {
 })
 
 post_to_queue_model = api.model('Post', {
-    'assets': fields.String(required=True, description='Assets'),
+    'assets': fields.String(required=True, assets='Assets'), 'index_nr': fields.Integer(required=True, index_nr=0),
  })
 set_index_model = api.model('Deqeue', {
     'assets': fields.Integer(required=True, index_nr = 0),
@@ -64,7 +64,7 @@ class Post(Resource):
         auth = post('http://127.0.0.1:7500/authenticate', json={}, headers={'Content-Type': 'application/json'})
         if auth: 
             args = request.json
-            all_queues[0].put(args["assets"]) #change later to specific queue
+            all_queues[args["index_nr"]].put(args["assets"]) #change later to specific queue
             return "Asset pushed to queue"
         else:
             return "No acces rights"
